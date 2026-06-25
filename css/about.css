@@ -435,6 +435,7 @@
   }
   .about-timeline {
     padding-left: 2rem;
+    margin-left: 1.5rem;
   }
   .timeline-year-node {
     width: 36px;
