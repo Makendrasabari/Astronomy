@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="404 - Space Coordinates Not Found. Slipped beyond the event horizon.">
+  <title>404 - Lost in the Cosmos | Stackly</title>
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    body {
+      background-color: #050314;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    
+    /* Cosmic Background Effects */
+    .space-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.15) 0%, rgba(5, 3, 20, 1) 80%);
+    }
+
+    /* Twinkling stars */
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 4s infinite ease-in-out;
+    }
+    
+    .star:nth-child(1) { top: 15%; left: 20%; width: 2px; height: 2px; animation-delay: 0s; }
+    .star:nth-child(2) { top: 35%; left: 75%; width: 3px; height: 3px; animation-delay: 1.5s; }
+    .star:nth-child(3) { top: 75%; left: 15%; width: 1.5px; height: 1.5px; animation-delay: 0.8s; }
+    .star:nth-child(4) { top: 85%; left: 80%; width: 2px; height: 2px; animation-delay: 2.2s; }
+    .star:nth-child(5) { top: 50%; left: 45%; width: 2.5px; height: 2.5px; animation-delay: 3s; }
+    .star:nth-child(6) { top: 20%; left: 60%; width: 1px; height: 1px; animation-delay: 0.5s; }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* Black hole/Galaxy core graphic */
+    .black-hole-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 400px;
+      z-index: 2;
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    
+    .black-hole {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, rgba(124, 58, 237, 0.1) 45%, rgba(5, 3, 20, 0) 70%);
+      animation: rotateGalaxy 25s infinite linear;
+      position: relative;
+    }
+
+    .black-hole::after {
+      content: "";
+      position: absolute;
+      top: 25%;
+      left: 25%;
+      width: 50%;
+      height: 50%;
+      border-radius: 50%;
+      background: #000;
+      box-shadow: 0 0 40px rgba(124, 58, 237, 0.8), inset 0 0 30px rgba(192, 132, 252, 0.5);
+    }
+    
+    @keyframes rotateGalaxy {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Content Area */
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 600px;
+      padding: 2rem;
+      animation: floatContainer 6s infinite ease-in-out;
+    }
+    
+    @keyframes floatContainer {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .error-code {
+      font-size: 8rem;
+      font-weight: 800;
+      margin: 0;
+      line-height: 1;
+      background: linear-gradient(135deg, #a855f7 0%, #c084fc 50%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.35));
+      animation: pulseGlow 3s infinite alternate ease-in-out;
+    }
+    
+    @keyframes pulseGlow {
+      0% { filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.25)); }
+      100% { filter: drop-shadow(0 0 40px rgba(192, 132, 252, 0.55)); }
+    }
+    
+    .error-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 1rem;
+      letter-spacing: 0.05em;
+    }
+    
+    .error-desc {
+      font-size: 0.95rem;
+      color: #b0aec6;
+      line-height: 1.6;
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    /* Premium Back Button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(124, 58, 237, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      padding: 0.85rem 2rem;
+      border-radius: 30px;
+      color: #c084fc;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);
+    }
+    
+    .btn-back:hover {
+      background: #7c3aed;
+      color: #fff;
+      border-color: #c084fc;
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+      transform: translateY(-2px);
+    }
+    
+    .btn-back svg {
+      transition: transform 0.2s ease;
+    }
+    
+    .btn-back:hover svg {
+      transform: translateX(-4px);
+    }
+
+    .btn-home {
+      background: rgba(168, 85, 247, 0.25);
+      border-color: rgba(192, 132, 252, 0.6);
+      color: #fff;
+    }
+
+    .btn-home:hover svg {
+      transform: scale(1.1) !important;
+    }
+  </style>
+  
+  <!-- Preloader script -->
+  <script src="js/preloader.js"></script>
+</head>
+<body>
+  
+  <div class="space-bg">
+    <!-- Starfield particles -->
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    
+    <!-- Rotating galaxy simulation -->
+    <div class="black-hole-container">
+      <div class="black-hole"></div>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <h1 class="error-code">404</h1>
+    <h2 class="error-title">LOST IN THE COSMOS</h2>
+    <p class="error-desc">
+      The coordinates you are looking for have slipped beyond the event horizon of our data arrays. 
+      Or perhaps they never existed in this sector of the universe.
+    </p>
+    <div class="btn-container">
+      <a href="#" class="btn-back" onclick="event.preventDefault(); window.history.back();">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        <span>Go Back</span>
+      </a>
+      <a href="index.html" class="btn-back btn-home">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+        <span>Home Station</span>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>

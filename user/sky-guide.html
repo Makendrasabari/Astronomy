@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly Observer - Sky Guide</title>
+  <!-- AOS Library Styles -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/dashboard-layout.css">
+  <link rel="stylesheet" href="../css/user-sky-guide.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/dashboard-responsive.css">
+  
+  <!-- Preloader script -->
+  <script src="../js/preloader.js"></script>
+</head>
+<body class="dashboard-body">
+
+  <div class="db-wrapper">
+    <!-- Left Sidebar -->
+    <aside class="db-sidebar" id="sidebar">
+      <div class="db-sidebar-logo">
+        <a href="dashboard.html">
+          <img src="../assets/images/logo (8).webp" alt="Stackly Logo">
+        </a>
+      </div>
+      
+      <ul class="db-sidebar-menu">
+        <li class="db-menu-item">
+          <a href="dashboard.html" class="db-nav-link">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z"/>
+            </svg>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="db-menu-item">
+          <a href="sky-guide.html" class="db-nav-link active">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+            </svg>
+            <span>Sky Guide</span>
+          </a>
+        </li>
+        <li class="db-menu-item">
+          <a href="observations.html" class="db-nav-link">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+            <span>My Observations</span>
+          </a>
+        </li>
+        <li class="db-menu-item">
+          <a href="favorites.html" class="db-nav-link">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+            <span>Favorites</span>
+          </a>
+        </li>
+        <li class="db-menu-item" style="margin-top: auto;">
+          <a href="#" class="db-nav-link" onclick="logoutSession();" style="color: #ef4444;">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013 3v1"/>
+            </svg>
+            <span>Sign Out</span>
+          </a>
+        </li>
+      </ul>
+      
+      <div class="db-sidebar-footer">
+        <div class="db-user-avatar">SG</div>
+        <div class="db-user-info">
+          <span class="db-user-name">Arthur Dent</span>
+          <span class="db-user-role">Stargazer</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="db-main-content">
+      <!-- Top Nav -->
+      <header class="db-top-nav">
+        <div class="db-left-header">
+          <button class="db-menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+          
+          <div class="db-breadcrumbs">
+            <a href="dashboard.html">Observer</a>
+            <span class="separator">/</span>
+            <span class="current">Sky Guide</span>
+          </div>
+        </div>
+        
+        <div class="db-right-header">
+
+          
+          <!-- Notifications -->
+          <div class="db-profile-menu">
+            <button class="db-notif-btn" id="notif-btn" aria-label="View Notifications">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+              </svg>
+              <span class="db-notif-badge" id="notif-badge"></span>
+            </button>
+            <div class="db-notif-dropdown" id="notif-dropdown">
+              <div class="db-notif-header">
+                <h4>Sky Alerts</h4>
+                <span class="db-notif-clear" id="notif-clear">Dismiss All</span>
+              </div>
+              <div class="db-notif-list">
+                <div class="db-notif-item">
+                  <div class="db-notif-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div>
+                  <div class="db-notif-text">
+                    <span class="db-notif-desc">Solar Flares alert active. Check filters.</span>
+                    <span class="db-notif-time">10 mins ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Profile Menu -->
+          <div class="db-profile-menu">
+            <button class="db-profile-btn" id="profile-btn" aria-label="Open Profile Settings">
+              <div class="db-user-avatar">SG</div>
+            </button>
+            <div class="db-profile-dropdown" id="profile-dropdown">
+              <a href="#" class="db-profile-link">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                <span>My Profile</span>
+              </a>
+              <hr style="border-color: var(--db-card-border); margin: 0.25rem 0;">
+              <a href="#" class="db-profile-link logout-btn" onclick="logoutSession();">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+                <span>Log Out</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Body -->
+      <div class="db-content-body">
+        
+        <!-- Section 1: Tonight's Sky Highlights -->
+        <div class="sky-highlights-grid" data-aos="fade-up">
+          <div class="db-card highlight-card">
+            <div class="highlight-info">
+              <span class="highlight-time font-mono">23:00 - 02:00</span>
+              <h4>Perseids Peak Peak</h4>
+              <p>Zenith hourly rate expected to exceed 60 meteors per hour. Ideal viewing facing North-East.</p>
+            </div>
+          </div>
+          <div class="db-card highlight-card">
+            <div class="highlight-info">
+              <span class="highlight-time font-mono">01:30</span>
+              <h4>Venus-Jupiter Conjunction</h4>
+              <p>Visual alignment separation of only 0.4 degrees. Visible with low telescope focal indexes.</p>
+            </div>
+          </div>
+          <div class="db-card highlight-card">
+            <div class="highlight-info">
+              <span class="highlight-time font-mono">All Night</span>
+              <h4>Cassiopeia Nebula Haze</h4>
+              <p>Faint dust clouds visible under low Bortle index class zones. Emission filter OIII recommended.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Row: Visibility Checker & Accessories -->
+        <div class="db-grid-2">
+          <!-- Section 2: Target Visibility Matrix -->
+          <div class="db-card" data-aos="fade-right" data-aos-delay="100">
+            <div class="db-card-header">
+              <h3 class="db-card-title">Target Object Status</h3>
+            </div>
+            <div class="visibility-checklist">
+              <div class="checklist-item">
+                <span class="object-badge badge-excellent">Excellent</span>
+                <span class="object-name">Mars (Opposition phase)</span>
+              </div>
+              <div class="checklist-item">
+                <span class="object-badge badge-excellent">Excellent</span>
+                <span class="object-name">Orion Nebula (M42)</span>
+              </div>
+              <div class="checklist-item">
+                <span class="object-badge badge-good">Good</span>
+                <span class="object-name">Andromeda Galaxy (M31)</span>
+              </div>
+              <div class="checklist-item">
+                <span class="object-badge badge-poor">Poor</span>
+                <span class="object-name">Saturn Rings (Low Altitude)</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Section 4: Observation Session Checklist -->
+          <div class="db-card" data-aos="fade-left" data-aos-delay="150">
+            <div class="db-card-header">
+              <h3 class="db-card-title">Session Gear Checklist</h3>
+            </div>
+            <div class="gear-checklist">
+              <label class="gear-item">
+                <input type="checkbox" checked>
+                <span class="gear-checkbox"></span>
+                <span>Calibrated Reflector Telescope</span>
+              </label>
+              <label class="gear-item">
+                <input type="checkbox" checked>
+                <span class="gear-checkbox"></span>
+                <span>Focal Reducer & Barlow Lens</span>
+              </label>
+              <label class="gear-item">
+                <input type="checkbox">
+                <span class="gear-checkbox"></span>
+                <span>Red Light Headlamp (Dark adaptation)</span>
+              </label>
+              <label class="gear-item">
+                <input type="checkbox">
+                <span class="gear-checkbox"></span>
+                <span>Nebular Narrowband Filter (Oxygen III)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Planet Transit Hours Chart -->
+        <div class="db-card" data-aos="fade-up">
+          <div class="db-card-header">
+            <h3 class="db-card-title">Transit Windows & Elevation Score (Horizontal Bar Chart)</h3>
+          </div>
+          <div style="height: 250px; position: relative;">
+            <canvas id="transitChart"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <footer class="db-footer">
+        <span>&copy; 2026 Stackly Space Network. All systems operational.</span>
+        <span>Node: OB_DECK_SG_12</span>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Library Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Custom scripts -->
+  <script src="../js/dashboard-layout.js"></script>
+  <script src="../js/user-sky-guide.js"></script>
+</body>
+</html>

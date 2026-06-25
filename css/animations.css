@@ -1,0 +1,126 @@
+/* Twinkling Star background keyframes */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.twinkle-star {
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+/* Floating animation for elements like planets or logos */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Nebula Breathing/Pulsing Glows */
+@keyframes nebula-breathe {
+  0%, 100% { opacity: 0.15; transform: scale(1) translate(0, 0); }
+  50% { opacity: 0.28; transform: scale(1.15) translate(-3%, 2%); }
+}
+
+.nebula-glow-1 {
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, transparent 60%);
+  animation: nebula-breathe 12s infinite ease-in-out;
+}
+
+.nebula-glow-2 {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.35) 0%, transparent 65%);
+  animation: nebula-breathe 18s infinite ease-in-out alternate;
+}
+
+/* Aurora wave animation */
+@keyframes aurora-wave {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.aurora-bg {
+  background: linear-gradient(270deg, rgba(124, 58, 237, 0.1), rgba(168, 85, 247, 0.15), rgba(192, 132, 252, 0.1));
+  background-size: 600% 600%;
+  animation: aurora-wave 20s ease infinite;
+}
+
+/* Shooting Star custom CSS elements */
+.shooting-star-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.shooting-star {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(-45deg, #fff, rgba(0, 0, 255, 0));
+  filter: drop-shadow(0 0 6px #fff);
+  animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+}
+
+@keyframes tail {
+  0% { width: 0; }
+  30% { width: 100px; }
+  100% { width: 0; }
+}
+
+@keyframes shooting {
+  0% { transform: translateX(0) translateY(0) rotate(-45deg); }
+  100% { transform: translateX(1000px) translateY(1000px) rotate(-45deg); }
+}
+
+/* Pulse Glows */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+    border-color: rgba(124, 58, 237, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+    border-color: var(--accent);
+  }
+}
+
+.pulse-glow-border {
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+/* Text glow pulsing */
+@keyframes pulse-text {
+  0%, 100% { text-shadow: 0 0 5px rgba(192, 132, 252, 0.3); }
+  50% { text-shadow: 0 0 15px rgba(192, 132, 252, 0.7); }
+}
+
+.pulse-text-glow {
+  animation: pulse-text 3s infinite ease-in-out;
+}
+
+/* Infinite rotation for orbit lines */
+@keyframes spin-clockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.orbit-spin {
+  animation: spin-clockwise 20s linear infinite;
+}
+
+/* Infinite rotation for opposite orbit lines */
+@keyframes spin-counter-clockwise {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.orbit-spin-reverse {
+  animation: spin-counter-clockwise 30s linear infinite;
+}

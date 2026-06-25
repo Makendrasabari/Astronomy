@@ -1,0 +1,85 @@
+/* ADMIN ANALYTICS SPECIFIC STYLES */
+
+/* Storage Node meters */
+.storage-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.storage-node {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.node-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.node-name {
+  color: #fff;
+  font-weight: 500;
+}
+
+.node-util {
+  color: var(--db-text-muted);
+}
+
+/* Research Publications List */
+.papers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.paper-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--db-card-border);
+  padding: 1.25rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all var(--transition-fast);
+}
+
+.paper-card:hover {
+  border-color: rgba(168, 85, 247, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.paper-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.paper-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.paper-date {
+  font-size: 0.75rem;
+  color: var(--db-text-muted);
+}
+
+.paper-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.paper-desc {
+  font-size: 0.8rem;
+  color: var(--db-text-muted);
+  line-height: 1.5;
+}

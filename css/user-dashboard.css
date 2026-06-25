@@ -1,0 +1,199 @@
+/* STARGAZER USER DASHBOARD SPECIFIC STYLES */
+
+/* Broadcast Alert Banner */
+.broadcast-alert {
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #c084fc;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
+  animation: pulse-glow 2s infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 10px rgba(168, 85, 247, 0.05); }
+  100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.2); }
+}
+
+.broadcast-alert-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.broadcast-alert-content svg {
+  color: var(--accent);
+}
+
+.broadcast-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
+
+/* Visibility Index Card */
+.vis-index-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.vis-index-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+  text-shadow: var(--glow-text);
+}
+
+.vis-summary {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.vis-index-factors {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-left: 1px solid var(--db-card-border);
+  padding-left: 2rem;
+}
+
+.factor-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--db-text-muted);
+}
+
+.factor-val {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Stats Tracker Cards */
+.stats-tracker-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.tracker-item {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid var(--db-card-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+
+.tracker-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.tracker-lbl {
+  font-size: 0.75rem;
+  color: var(--db-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+/* Live Feed Camera Screen */
+.feed-viewport {
+  width: 100%;
+  height: 250px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--db-card-border);
+}
+
+.feed-viewport img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: luminosity;
+  opacity: 0.8;
+  transition: all var(--transition-slow);
+}
+
+.feed-grid-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(rgba(18, 16, 35, 0) 95%, rgba(124, 58, 237, 0.15) 95%),
+              linear-gradient(90deg, rgba(18, 16, 35, 0) 95%, rgba(124, 58, 237, 0.15) 95%);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+.feed-radar-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  pointer-events: none;
+  animation: radar-sweep 4s linear infinite;
+}
+
+@keyframes radar-sweep {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+.feed-telemetry {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #22c55e;
+  background: rgba(5, 3, 20, 0.75);
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  text-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .vis-index-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .vis-index-factors {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--db-card-border);
+    padding-top: 1rem;
+  }
+}

@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the wonders of the cosmos with Stackly. Get up-to-date star guides, observatory insights, upcoming sky events, and interactive astronomy data.">
+  <title>Stackly - Explore the Infinite Universe</title>
+  
+  <!-- AOS Library Styles -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <!-- Preloader script -->
+  <script src="js/preloader.js"></script>
+</head>
+<body>
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Custom trailing cursor glow -->
+  <div id="cursor-glow"></div>
+
+  <!-- Background Space Canvas -->
+  <canvas id="cosmic-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none;"></canvas>
+
+  <!-- Sticky Header Navigation -->
+  <header class="header">
+    <a href="index.html" class="logo">
+      <img class="logo-img" src="assets/images/logo (8).webp" alt="Stackly Logo">
+    </a>
+    
+    <nav>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="observatory.html" class="nav-link">Observatory</a></li>
+        <li class="nav-item"><a href="sky-guide.html" class="nav-link">Sky Guide</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        <li class="nav-item nav-login-item"><a href="login.html" class="nav-login-btn">Login</a></li>
+      </ul>
+    </nav>
+    
+    <div class="header-actions">
+      <a href="login.html" class="nav-login-btn">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+        </svg>
+        <span>Login</span>
+      </a>
+      
+      <!-- Hamburger Menu icon -->
+      <button class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main style="position: relative; z-index: 2;">
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero">
+      <div class="hero-bg-wrapper">
+        <img class="hero-image" src="assets/images/home_hero.webp" alt="Observatory dome under a glowing purple galaxy night sky">
+        <div class="hero-overlay"></div>
+      </div>
+      
+      <div class="hero-content" data-aos="fade-right">
+        <span class="hero-subtitle">Discover the Cosmos</span>
+        <h1 class="hero-title">
+          Explore the <span>Infinite Universe.</span>
+        </h1>
+        <p class="hero-desc">
+          Discover the wonders beyond our world. Stackly connects you with remote observatories, constellation trackers, and real-time celestial maps to illuminate the night sky.
+        </p>
+        <div class="hero-btns">
+          <a href="404.html" class="btn btn-primary magnetic">
+            <span>Explore Observatory</span>
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+          <a href="404.html" class="btn btn-secondary magnetic">
+            <span>Sky Guide</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="400">
+
+        <div class="mouse">
+          <span class="wheel"></span>
+        </div>
+      </div> -->
+    </section>
+
+    <!-- Hero Stats Bar (Below Hero fold) -->
+    <div class="hero-stats-panel glass-panel" data-aos="fade-up" data-aos-delay="200">
+      <div class="hero-stat-card">
+        <div class="hero-stat-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        </div>
+        <div>
+          <div class="hero-stat-num">10K+</div>
+          <div class="hero-stat-label">Active Members</div>
+        </div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <div>
+          <div class="hero-stat-num">120+</div>
+          <div class="hero-stat-label">Research Projects</div>
+        </div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        </div>
+        <div>
+          <div class="hero-stat-num">500+</div>
+          <div class="hero-stat-label">Celestial Objects</div>
+        </div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <div>
+          <div class="hero-stat-num">25+</div>
+          <div class="hero-stat-label">Years Exploration</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. FEATURED CELESTIAL OBJECTS -->
+    <section id="featured-objects" class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-subtitle">Deep Space Showcase</span>
+        <h2 class="section-title">Featured Celestial Objects</h2>
+        <p class="section-description">Marvel at the breathtaking structures floating in the cosmic ocean, captured by state-of-the-art space telescopes.</p>
+      </div>
+      
+      <div class="celestial-grid">
+        <!-- Nebula -->
+        <div class="glass-card celestial-card tilt-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="celestial-card-img">
+            <span class="celestial-badge">Nebula</span>
+            <img src="assets/images/orion_nebula.webp" alt="Orion Nebula purple rendering">
+          </div>
+          <div class="celestial-info">
+            <h3>Orion Nebula (M42)</h3>
+            <p>A massive, glowing stellar nursery situated in the Milky Way, visible to the naked eye. M42 is the closest region of massive star formation to Earth, acting as an astrophysicist's laboratory.</p>
+          </div>
+          <div class="celestial-card-footer">
+            <div class="celestial-stat">Distance <span>1,344 LY</span></div>
+            <div class="celestial-stat">Magnitude <span>4.0</span></div>
+          </div>
+        </div>
+        
+        <!-- Exoplanet -->
+        <div class="glass-card celestial-card tilt-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="celestial-card-img">
+            <span class="celestial-badge">Exoplanet</span>
+            <img src="assets/images/kepler_planet.webp" alt="Kepler Exoplanet purple orbit">
+          </div>
+          <div class="celestial-info">
+            <h3>Kepler-186f</h3>
+            <p>The first validated Earth-size planet orbiting within the habitable zone of another star. Receiving about one-third of the sunlight that Earth gets, its liquid status remains a mystery.</p>
+          </div>
+          <div class="celestial-card-footer">
+            <div class="celestial-stat">Distance <span>582 LY</span></div>
+            <div class="celestial-stat">Orbit Period <span>130 Days</span></div>
+          </div>
+        </div>
+        
+        <!-- Black Hole -->
+        <div class="glass-card celestial-card tilt-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="celestial-card-img">
+            <span class="celestial-badge">Supermassive</span>
+            <img src="assets/images/black_hole.webp" alt="Sagittarius A Black Hole purple core">
+          </div>
+          <div class="celestial-info">
+            <h3>Sagittarius A*</h3>
+            <p>The supermassive black hole anchor at the geographical center of our Milky Way galaxy. Possessing a mass 4.1 million times that of our Sun, it warps the fabric of local spacetime.</p>
+          </div>
+          <div class="celestial-card-footer">
+            <div class="celestial-stat">Distance <span>26,673 LY</span></div>
+            <div class="celestial-stat">Mass <span>4.1M Suns</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. POPULAR OBSERVATORIES -->
+    <section id="observatories" style="background: rgba(5, 3, 20, 0.45);">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-subtitle">Stargazing Domes</span>
+          <h2 class="section-title">Popular Observatories</h2>
+          <p class="section-description">Remote telescopes perched on the highest mountain peaks, peering through the atmosphere into deep time.</p>
+        </div>
+        
+        <div class="observatories-grid">
+          <!-- Mauna Kea -->
+          <div class="observatory-item" data-aos="zoom-in" data-aos-delay="100">
+            <img src="assets/images/home_hero.webp" alt="Mauna Kea observatory dome">
+            <div class="observatory-item-overlay">
+              <span class="observatory-loc">Hawaii, USA</span>
+              <h3 class="observatory-name">Mauna Kea</h3>
+              <p class="observatory-short-desc">Located 4,207m above sea level, housing the world's premier optical, infrared, and submillimeter astronomical instruments.</p>
+              <a href="404.html" class="btn btn-glass btn-sm">Explore Dome</a>
+            </div>
+          </div>
+          
+          <!-- Paranal -->
+          <div class="observatory-item" data-aos="zoom-in" data-aos-delay="200">
+            <img src="assets/images/observatory_hero.webp" alt="Paranal observatory radio dish">
+            <div class="observatory-item-overlay">
+              <span class="observatory-loc">Atacama, Chile</span>
+              <h3 class="observatory-name">Paranal Observatory</h3>
+              <p class="observatory-short-desc">Home of the Very Large Telescope (VLT) array, taking advantage of dry air and zero light pollution in the Chilean desert.</p>
+              <a href="404.html" class="btn btn-glass btn-sm">Explore Dome</a>
+            </div>
+          </div>
+          
+          <!-- Roque de los Muchachos -->
+          <div class="observatory-item" data-aos="zoom-in" data-aos-delay="300">
+            <img src="assets/images/contact_hero.webp" alt="Roque de los muchachos satellite dome">
+            <div class="observatory-item-overlay">
+              <span class="observatory-loc">La Palma, Spain</span>
+              <h3 class="observatory-name">Roque de los Muchachos</h3>
+              <p class="observatory-short-desc">One of the best locations for northern sky observation, housing the massive 10.4-meter Gran Telescopio Canarias.</p>
+              <a href="404.html" class="btn btn-glass btn-sm">Explore Dome</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 4b. PLANETS CATALOG -->
+    <section id="planets-cards-section" class="planets-cards-section">
+      <div class="planets-nebula-glow"></div>
+      <div class="stars-twinkle-overlay"></div>
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-subtitle">Planetary Catalog</span>
+          <h2 class="section-title">Worlds of Our Solar System</h2>
+          <p class="section-description">Journey through the celestial bodies orbiting our host star, styled with premium telemetry and interactive data.</p>
+        </div>
+        
+        <div class="planets-slider-wrapper" data-aos="fade-up">
+          <div class="planets-slider-container">
+            <div class="planets-slider-track">
+              <!-- Mercury -->
+              <div class="planet-card planet-card-mercury">
+                <div class="planet-card-shine"></div>
+                <div class="planet-card-img-wrap">
+                  <img src="assets/images/planet_mercury.webp" alt="Mercury" class="planet-card-img">
+                </div>
+                <div class="planet-card-body">
+                  <h3 class="planet-name">Mercury</h3>
+                  <p class="planet-desc">The closest planet to the Sun and the smallest in our Solar System. Its heavily cratered surface resembles Earth's Moon, showing no atmospheric protection.</p>
+                  <div class="planet-meta">
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Distance:</span>
+                      <span class="planet-meta-val">57.9M km</span>
+                    </div>
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Fact:</span>
+                      <span class="planet-meta-val">Year is only 88 Earth days long.</span>
+                    </div>
+                  </div>
+                  <a href="404.html" class="btn planet-btn">Explore Planet</a>
+                </div>
+              </div>
+
+              <!-- Venus -->
+              <div class="planet-card planet-card-venus">
+                <div class="planet-card-shine"></div>
+                <div class="planet-card-img-wrap">
+                  <img src="assets/images/planet_venus.webp" alt="Venus" class="planet-card-img">
+                </div>
+                <div class="planet-card-body">
+                  <h3 class="planet-name">Venus</h3>
+                  <p class="planet-desc">Earth's twin in size, but a hellish world covered in thick, toxic carbon dioxide clouds that trap heat, creating runaway greenhouse conditions.</p>
+                  <div class="planet-meta">
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Distance:</span>
+                      <span class="planet-meta-val">108.2M km</span>
+                    </div>
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Fact:</span>
+                      <span class="planet-meta-val">Hottest planet in the system (465°C).</span>
+                    </div>
+                  </div>
+                  <a href="404.html" class="btn planet-btn">Explore Planet</a>
+                </div>
+              </div>
+
+              <!-- Earth -->
+              <div class="planet-card planet-card-earth">
+                <div class="planet-card-shine"></div>
+                <div class="planet-card-img-wrap">
+                  <img src="assets/images/planet_earth.webp" alt="Earth" class="planet-card-img">
+                </div>
+                <div class="planet-card-body">
+                  <h3 class="planet-name">Earth</h3>
+                  <p class="planet-desc">Our home planet and the only known place in the universe capable of supporting life, boasting vast liquid water oceans and a rich oxygen atmosphere.</p>
+                  <div class="planet-meta">
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Distance:</span>
+                      <span class="planet-meta-val">149.6M km</span>
+                    </div>
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Fact:</span>
+                      <span class="planet-meta-val">Only known world hosting life & water.</span>
+                    </div>
+                  </div>
+                  <a href="404.html" class="btn planet-btn">Explore Planet</a>
+                </div>
+              </div>
+
+              <!-- Mars -->
+              <div class="planet-card planet-card-mars">
+                <div class="planet-card-shine"></div>
+                <div class="planet-card-img-wrap">
+                  <img src="assets/images/planet_mars.webp" alt="Mars" class="planet-card-img">
+                </div>
+                <div class="planet-card-body">
+                  <h3 class="planet-name">Mars</h3>
+                  <p class="planet-desc">The Red Planet, a cold, desert world covered in iron oxide dust. It features frozen polar caps, ancient dry riverbeds, and massive volcanoes.</p>
+                  <div class="planet-meta">
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Distance:</span>
+                      <span class="planet-meta-val">227.9M km</span>
+                    </div>
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Fact:</span>
+                      <span class="planet-meta-val">Has the tallest volcano (Olympus Mons).</span>
+                    </div>
+                  </div>
+                  <a href="404.html" class="btn planet-btn">Explore Planet</a>
+                </div>
+              </div>
+
+              <!-- Jupiter -->
+              <div class="planet-card planet-card-jupiter">
+                <div class="planet-card-shine"></div>
+                <div class="planet-card-img-wrap">
+                  <img src="assets/images/planet_jupiter.webp" alt="Jupiter" class="planet-card-img">
+                </div>
+                <div class="planet-card-body">
+                  <h3 class="planet-name">Jupiter</h3>
+                  <p class="planet-desc">The largest planet in our Solar System, this massive gas giant has no solid surface and is composed primarily of hydrogen and helium gas.</p>
+                  <div class="planet-meta">
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Distance:</span>
+                      <span class="planet-meta-val">778.5M km</span>
+                    </div>
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Fact:</span>
+                      <span class="planet-meta-val">Great Red Spot is a storm wider than Earth.</span>
+                    </div>
+                  </div>
+                  <a href="404.html" class="btn planet-btn">Explore Planet</a>
+                </div>
+              </div>
+
+              <!-- Saturn -->
+              <div class="planet-card planet-card-saturn">
+                <div class="planet-card-shine"></div>
+                <div class="planet-card-img-wrap">
+                  <img src="assets/images/planet_saturn.webp" alt="Saturn" class="planet-card-img">
+                </div>
+                <div class="planet-card-body">
+                  <h3 class="planet-name">Saturn</h3>
+                  <p class="planet-desc">The jewel of the Solar System, famous for its extensive, brilliant ring system composed of billions of individual ice particles and rocky debris.</p>
+                  <div class="planet-meta">
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Distance:</span>
+                      <span class="planet-meta-val">1.43B km</span>
+                    </div>
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Fact:</span>
+                      <span class="planet-meta-val">Less dense than water and would float.</span>
+                    </div>
+                  </div>
+                  <a href="404.html" class="btn planet-btn">Explore Planet</a>
+                </div>
+              </div>
+
+              <!-- Uranus -->
+              <div class="planet-card planet-card-uranus">
+                <div class="planet-card-shine"></div>
+                <div class="planet-card-img-wrap">
+                  <img src="assets/images/planet_uranus.webp" alt="Uranus" class="planet-card-img">
+                </div>
+                <div class="planet-card-body">
+                  <h3 class="planet-name">Uranus</h3>
+                  <p class="planet-desc">An icy gas giant with a distinct pale cyan hue caused by atmospheric methane. Its unique orientation features an extreme axial tilt.</p>
+                  <div class="planet-meta">
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Distance:</span>
+                      <span class="planet-meta-val">2.87B km</span>
+                    </div>
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Fact:</span>
+                      <span class="planet-meta-val">Rotates on its side with a 98° tilt.</span>
+                    </div>
+                  </div>
+                  <a href="404.html" class="btn planet-btn">Explore Planet</a>
+                </div>
+              </div>
+
+              <!-- Neptune -->
+              <div class="planet-card planet-card-neptune">
+                <div class="planet-card-shine"></div>
+                <div class="planet-card-img-wrap">
+                  <img src="assets/images/planet_neptune.webp" alt="Neptune" class="planet-card-img">
+                </div>
+                <div class="planet-card-body">
+                  <h3 class="planet-name">Neptune</h3>
+                  <p class="planet-desc">A deep blue ice giant swept by supersonic winds and violent storms. It is the most distant planet from the Sun, frozen in the outer dark.</p>
+                  <div class="planet-meta">
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Distance:</span>
+                      <span class="planet-meta-val">4.5B km</span>
+                    </div>
+                    <div class="planet-meta-item">
+                      <span class="planet-meta-label">Fact:</span>
+                      <span class="planet-meta-val">Winds are the fastest in the Solar System.</span>
+                    </div>
+                  </div>
+                  <a href="404.html" class="btn planet-btn">Explore Planet</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. GALAXY TIMELINE -->
+    <section id="galaxy-timeline" style="background: rgba(5, 3, 20, 0.45);">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-subtitle">From Big Bang to Today</span>
+          <h2 class="section-title">Cosmic Evolution</h2>
+          <p class="section-description">Trace the primary milestones of the universe, starting from the singularity 13.8 billion years ago.</p>
+        </div>
+        
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+          
+          <!-- Big Bang -->
+          <div class="timeline-node" data-aos="fade-right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-wrapper">
+              <div class="glass-card timeline-card">
+                <span class="timeline-time">13.8 Billion Years Ago</span>
+                <h3>The Big Bang</h3>
+                <p>The universe began as an extremely hot, dense point (singularity). It exploded and began expanding, cooling down rapidly to form basic subatomic particles.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Dark Ages -->
+          <div class="timeline-node" data-aos="fade-left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-wrapper">
+              <div class="glass-card timeline-card">
+                <span class="timeline-time">13.7 Billion Years Ago</span>
+                <h3>Cosmic Dark Ages</h3>
+                <p>Before the first stars formed, the universe was filled with cold hydrogen and helium gas. No light sources existed, rendering the universe entirely dark.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- First Stars -->
+          <div class="timeline-node" data-aos="fade-right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-wrapper">
+              <div class="glass-card timeline-card">
+                <span class="timeline-time">13.5 Billion Years Ago</span>
+                <h3>First Stars Spark</h3>
+                <p>Gravity pulled dense clouds of cold gas together, igniting nuclear fusion. The cosmic dark ages ended as the universe was illuminated by massive star groups.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Milky Way -->
+          <div class="timeline-node" data-aos="fade-left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-wrapper">
+              <div class="glass-card timeline-card">
+                <span class="timeline-time">13.2 Billion Years Ago</span>
+                <h3>Milky Way Birth</h3>
+                <p>Dwarf galaxies crashed and coalesced under gravity, giving shape to the spiral core of our home galaxy, the Milky Way.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ASTRONOMY STATISTICS -->
+    <section id="statistics" class="container">
+      <div class="stats-grid">
+        <div class="stats-text" data-aos="fade-right">
+          <span class="section-subtitle">Observations count</span>
+          <h2 class="section-title" style="text-align: left; margin-bottom: 0;">Stackly Observation Metrics</h2>
+          <p class="section-description" style="margin: 0; text-align: left;">Our networks constantly collect telemetry, tracking celestial shapes and registering coordinates in the shared public database.</p>
+          
+          <div class="stats-card-container">
+            <div class="glass-card stat-box">
+              <div class="stat-box-num">43.8K</div>
+              <div class="stat-box-label">Observed Stars</div>
+            </div>
+            <div class="glass-card stat-box">
+              <div class="stat-box-num">2.4K</div>
+              <div class="stat-box-label">Exoplanets Found</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="glass-card stats-chart-wrapper" data-aos="fade-left" style="height: 400px; display: flex; flex-direction: column;">
+          <div class="stats-card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-shrink: 0;">
+            <h3 style="font-size: 0.95rem; color: #fff; margin: 0; font-family: var(--font-title); letter-spacing: 0.05em; text-transform: uppercase;">Observation Data</h3>
+            <div class="stats-tabs">
+              <button class="stats-tab-btn active" data-tab="chart">Telemetry Chart</button>
+              <button class="stats-tab-btn" data-tab="gallery">Recent Captures</button>
+            </div>
+          </div>
+          
+          <div class="stats-tab-content" style="flex-grow: 1; position: relative; min-height: 0;">
+            <!-- Chart Pane -->
+            <div class="stats-tab-pane active" id="pane-chart" style="position: relative; width: 100%; height: 100%; transition: opacity 0.3s ease;">
+              <canvas id="stats-chart" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+            </div>
+            
+            <!-- Gallery Pane -->
+            <div class="stats-tab-pane" id="pane-gallery" style="display: none; position: relative; width: 100%; height: 100%; opacity: 0; transition: opacity 0.3s ease; border-radius: 12px; overflow: hidden;">
+              <div class="stats-gallery-slides" style="height: 100%; width: 100%; position: relative; overflow: hidden;">
+                
+                <!-- Slide 1 -->
+                <div class="stats-gallery-slide active" style="position: absolute; inset: 0; opacity: 1; transition: opacity 0.5s ease-in-out; display: block;">
+                  <img src="assets/images/orion_nebula.webp" alt="Orion Nebula" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                  <div class="gallery-slide-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(5, 3, 20, 0.95)); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem; pointer-events: none;">
+                    <span class="gallery-slide-tag" style="align-self: flex-start; background: rgba(168, 85, 247, 0.2); border: 1px solid var(--accent); padding: 0.2rem 0.6rem; border-radius: 10px; font-size: 0.65rem; color: var(--accent); font-family: var(--font-title); font-weight: 600; text-transform: uppercase;">Nebula</span>
+                    <h4 style="font-size: 1.1rem; color: #fff; margin: 0.25rem 0 0; font-family: var(--font-title);">Orion Nebula (M42)</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">Focal coordinates: RA 05h 35m | Dec -05° 23'</p>
+                  </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="stats-gallery-slide" style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s ease-in-out; display: none;">
+                  <img src="assets/images/kepler_planet.webp" alt="Kepler-186f" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                  <div class="gallery-slide-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(5, 3, 20, 0.95)); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem; pointer-events: none;">
+                    <span class="gallery-slide-tag" style="align-self: flex-start; background: rgba(168, 85, 247, 0.2); border: 1px solid var(--accent); padding: 0.2rem 0.6rem; border-radius: 10px; font-size: 0.65rem; color: var(--accent); font-family: var(--font-title); font-weight: 600; text-transform: uppercase;">Exoplanet</span>
+                    <h4 style="font-size: 1.1rem; color: #fff; margin: 0.25rem 0 0; font-family: var(--font-title);">Kepler-186f</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">Habitable zone exoplanet | Distance: 582 LY</p>
+                  </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="stats-gallery-slide" style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s ease-in-out; display: none;">
+                  <img src="assets/images/black_hole.webp" alt="Sagittarius A*" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                  <div class="gallery-slide-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(5, 3, 20, 0.95)); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem; pointer-events: none;">
+                    <span class="gallery-slide-tag" style="align-self: flex-start; background: rgba(168, 85, 247, 0.2); border: 1px solid var(--accent); padding: 0.2rem 0.6rem; border-radius: 10px; font-size: 0.65rem; color: var(--accent); font-family: var(--font-title); font-weight: 600; text-transform: uppercase;">Supermassive</span>
+                    <h4 style="font-size: 1.1rem; color: #fff; margin: 0.25rem 0 0; font-family: var(--font-title);">Sagittarius A*</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">Galaxy center anchor | Mass: 4.1M Suns</p>
+                  </div>
+                </div>
+
+              </div>
+              
+              <!-- Slide arrows -->
+              <button class="gallery-nav-btn prev-btn" aria-label="Previous Slide">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button class="gallery-nav-btn next-btn" aria-label="Next Slide">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              </button>
+              
+              <!-- Slide indicators -->
+              <div class="gallery-dots">
+                <span class="gallery-dot active" data-index="0"></span>
+                <span class="gallery-dot" data-index="1"></span>
+                <span class="gallery-dot" data-index="2"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. UPCOMING SKY EVENTS -->
+    <section id="upcoming-events" style="background: rgba(5, 3, 20, 0.45);">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-subtitle">Calendar Alerts</span>
+          <h2 class="section-title">Upcoming Sky Events</h2>
+          <p class="section-description">Mark your calendar for these spectacular alignments, eclipses, and meteor showers happening soon.</p>
+        </div>
+        
+        <div class="events-grid">
+          <!-- Event 1 -->
+          <div class="glass-card event-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="event-date-badge">
+              <span class="event-day">12</span>
+              <span class="event-month">Aug</span>
+            </div>
+            <h3>Perseids Meteor Shower</h3>
+            <p>One of the most prolific meteor showers of the year, peaking with up to 100 meteors per hour. Best observed after midnight in dark sky areas.</p>
+            <div class="event-meta">
+              <div class="event-time">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Peak: 02:00 AM UTC</span>
+              </div>
+              <a href="404.html" class="event-btn" style="text-decoration: none;">Set Alert</a>
+            </div>
+          </div>
+          
+          <!-- Event 2 -->
+          <div class="glass-card event-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="event-date-badge">
+              <span class="event-day">18</span>
+              <span class="event-month">Sep</span>
+            </div>
+            <h3>Partial Lunar Eclipse</h3>
+            <p>A partial lunar eclipse will be visible across the Americas, Europe, and Africa. The Earth shadow will cast a deep amber red across the moon face.</p>
+            <div class="event-meta">
+              <div class="event-time">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Peak: 02:44 AM UTC</span>
+              </div>
+              <a href="404.html" class="event-btn" style="text-decoration: none;">Set Alert</a>
+            </div>
+          </div>
+          
+          <!-- Event 3 -->
+          <div class="glass-card event-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="event-date-badge">
+              <span class="event-day">21</span>
+              <span class="event-month">Oct</span>
+            </div>
+            <h3>Orionids Meteor Shower</h3>
+            <p>Produced by dust grains left behind by Halley Comet. Famous for fast, bright meteors, originating from the constellation of Orion.</p>
+            <div class="event-meta">
+              <div class="event-time">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Peak: 11:30 PM UTC</span>
+              </div>
+              <a href="404.html" class="event-btn" style="text-decoration: none;">Set Alert</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. TESTIMONIALS SECTION -->
+    <section id="testimonials" class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-subtitle">Community Words</span>
+        <h2 class="section-title">Testimonials</h2>
+        <p class="section-description">What professional astrophysicists and amateur stargazers say about Stackly astronomical services.</p>
+      </div>
+      
+      <div class="vertical-testimonials-container" data-aos="fade-up">
+        <div class="vertical-testimonials-track">
+          <!-- Item 1 -->
+          <div class="vertical-testimonial-item">
+            <div class="glass-card testimonial-card-inner">
+              <img class="testimonial-avatar" src="assets/images/user_sarah.png" alt="Dr. Sarah Jenkins">
+              <p class="testimonial-quote">"Stackly's web observatory controls made my exoplanet telemetry gathering extraordinarily efficient. I could coordinate schedule bookings across telescopes in Chile from my campus desk."</p>
+              <h4 class="testimonial-author">Dr. Sarah Jenkins</h4>
+              <span class="testimonial-role">Senior Astrophysicist, MIT</span>
+            </div>
+          </div>
+          <!-- Item 2 -->
+          <div class="vertical-testimonial-item">
+            <div class="glass-card testimonial-card-inner">
+              <img class="testimonial-avatar" src="assets/images/user_marcus.png" alt="Marcus Henderson">
+              <p class="testimonial-quote">"The sky-guide interactive constellation lines and live calendar alerts are my absolute favorites. I never miss a meteor shower peak or partial eclipse anymore thanks to Stackly."</p>
+              <h4 class="testimonial-author">Marcus Henderson</h4>
+              <span class="testimonial-role">Amateur Stargazer</span>
+            </div>
+          </div>
+          <!-- Item 3 -->
+          <div class="vertical-testimonial-item">
+            <div class="glass-card testimonial-card-inner">
+              <img class="testimonial-avatar" src="assets/images/user_elena.png" alt="Elena Rostova">
+              <p class="testimonial-quote">"The premium glassmorphism interfaces and fluid 3D orbit visuals match the beauty of the cosmos. It's the most responsive astronomy website I've ever encountered."</p>
+              <h4 class="testimonial-author">Elena Rostova</h4>
+              <span class="testimonial-role">Research Fellow, ESA</span>
+            </div>
+          </div>
+          <!-- Item 4 -->
+          <div class="vertical-testimonial-item">
+            <div class="glass-card testimonial-card-inner">
+              <img class="testimonial-avatar" src="assets/images/user_alan.png" alt="Dr. Alan Vance">
+              <p class="testimonial-quote">"Using Stackly for my astronomy course lectures has been a revelation. The real-time mapping of satellite paths gives my students a tactile feel for orbital mechanics."</p>
+              <h4 class="testimonial-author">Dr. Alan Vance</h4>
+              <span class="testimonial-role">Cosmology Professor, Cambridge</span>
+            </div>
+          </div>
+          <!-- Item 5 -->
+          <div class="vertical-testimonial-item">
+            <div class="glass-card testimonial-card-inner">
+              <img class="testimonial-avatar" src="assets/images/user_clara.png" alt="Clara Thorne">
+              <p class="testimonial-quote">"The visibility forecasts are incredibly accurate. I've captured some of my best deep space nebula photos by planning my shooting windows exactly around Stackly's atmospheric seeing data."</p>
+              <h4 class="testimonial-author">Clara Thorne</h4>
+              <span class="testimonial-role">Astrophotographer & Space Enthusiast</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. NEWSLETTER -->
+    <section class="newsletter-section container" data-aos="zoom-out">
+      <div class="glass-card newsletter-panel">
+        <h3>Join the Cosmos Club</h3>
+        <p>Get cosmic alerts, stellar guides, and remote telescope observation booking opportunities delivered directly to your inbox.</p>
+        <form class="newsletter-form-home" onsubmit="event.preventDefault(); window.location.href = '404.html';">
+          <input type="email" placeholder="Your Email Address" required>
+          <button type="submit" class="btn btn-primary magnetic">Subscribe Now</button>
+        </form>
+        <div id="newsletter-success" style="color: var(--accent); font-size: 0.9rem; margin-top: 1rem; display: none; text-align: center; font-weight: 500;">Thank you for subscribing to Stackly!</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <!-- Col 1 Brand -->
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="footer-brand-logo">
+          <img class="logo-img" src="assets/images/logo (8).webp" alt="Stackly Logo">
+        </a>
+        <p class="footer-desc">
+          Empowering stargazers and astrophysicists globally to observe, map, and document the mysteries of our universe.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon magnetic">
+            <!-- Twitter/X -->
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" class="social-icon magnetic">
+            <!-- Instagram -->
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" class="social-icon magnetic">
+            <!-- Discord -->
+            <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.873-.894.077.077 0 01-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 01.077-.011c3.92 1.793 8.18 1.793 12.061 0a.073.073 0 01.078.009c.12.099.246.195.373.289a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.894.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/></svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Col 2 Quick Links -->
+      <div class="footer-col">
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="observatory.html" class="footer-link">Observatories</a></li>
+          <li><a href="sky-guide.html" class="footer-link">Sky Guide</a></li>
+          <li><a href="contact.html" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 3 Resources -->
+      <div class="footer-col">
+        <h4 class="footer-title">Resources</h4>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">Research Publications</a></li>
+          <li><a href="#" class="footer-link">Virtual Tour Simulator</a></li>
+          <li><a href="#" class="footer-link">Stargazing Calendar</a></li>
+          <li><a href="#" class="footer-link">Astronomical Tools</a></li>
+          <li><a href="#" class="footer-link">Developer API</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 4 Salem Address & Map -->
+      <div class="footer-col footer-address">
+        <h4 class="footer-title">Stackly Salem</h4>
+        <p class="footer-desc" style="margin-bottom: -0.5rem;">
+          Astronomical Park, Salem,<br>
+          Tamil Nadu 636016, India
+        </p>
+        <div class="footer-map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125199.18342416035!2d78.0772719!3d11.6562095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf1ccf52c611f%3A0x3f3e617d12f1712a!2sSalem%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="copyright">
+        &copy; 2026 Stackly. All rights reserved. Built with passion for the cosmos.
+      </div>
+      <ul class="footer-bottom-links">
+        <li><a href="#" class="footer-bottom-link">Privacy Policy</a></li>
+        <li><a href="#" class="footer-bottom-link">Terms of Service</a></li>
+        <li><a href="#" class="footer-bottom-link">Cookie Settings</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- AOS Library JS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/animations.js"></script>
+
+</body>
+</html>

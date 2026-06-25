@@ -1,0 +1,527 @@
+/* CSS for Sky Guide Page, Star Charts, Moon Phase Calculator & Visibility grids */
+
+/* --- HERO SECTION --- */
+.sky-hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5.5rem 2rem 4rem;
+  overflow: hidden;
+}
+
+.sky-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.sky-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.sky-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.12) 0%, rgba(5, 3, 20, 0.55) 60%),
+              linear-gradient(to bottom, rgba(5, 3, 20, 0.15), rgba(5, 3, 20, 0.88));
+  z-index: 0;
+}
+
+.sky-hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 820px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* --- QUICK NAV BAR --- */
+.sky-nav-bar {
+  max-width: 1100px;
+  margin: 3rem auto 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  gap: 0;
+  position: relative;
+  z-index: 4;
+}
+
+.sky-nav-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sky-nav-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(192, 132, 252, 0.05);
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sky-nav-card:hover::before {
+  opacity: 1;
+}
+
+.sky-nav-card:hover .sky-nav-icon {
+  background: var(--primary);
+  border-color: var(--accent);
+  box-shadow: 0 0 16px rgba(124, 58, 237, 0.5);
+  color: #fff;
+}
+
+.sky-nav-card:hover .sky-nav-label {
+  color: var(--accent);
+}
+
+.sky-nav-card:hover .sky-nav-arrow {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+.sky-nav-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(192, 132, 252, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.sky-nav-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.sky-nav-card:hover .sky-nav-icon img {
+  transform: scale(1.15);
+}
+
+.sky-nav-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.sky-nav-label {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.sky-nav-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+.sky-nav-arrow {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.sky-nav-divider {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent);
+  flex-shrink: 0;
+  margin: 0 0.5rem;
+}
+
+/* --- CONSTELLATIONS SVG STAR MAPS --- */
+.sky-map-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.sky-map-visual {
+  background: rgba(10, 8, 28, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.constellation-svg {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+}
+
+/* SVG Line Outlines */
+.constellation-line {
+  stroke: rgba(168, 85, 247, 0.15);
+  stroke-width: 1.5;
+  stroke-dasharray: 4;
+  transition: all var(--transition-medium);
+}
+
+.constellation-line.active {
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-dasharray: 0;
+  filter: drop-shadow(0 0 5px var(--accent));
+}
+
+/* SVG Star Nodes */
+.constellation-star {
+  fill: #fff;
+  stroke: rgba(192, 132, 252, 0.4);
+  stroke-width: 3;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.constellation-star:hover {
+  fill: var(--accent);
+  stroke: #fff;
+  stroke-width: 5;
+  r: 8;
+  filter: drop-shadow(0 0 10px #fff);
+}
+
+.constellation-star.active {
+  fill: var(--accent);
+  stroke: #fff;
+  stroke-width: 4;
+  r: 7.5;
+  filter: drop-shadow(0 0 8px var(--accent));
+}
+
+/* SVG Text Labels */
+.constellation-label {
+  fill: var(--text-muted);
+  font-family: var(--font-title);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  opacity: 0.3;
+  pointer-events: none;
+  transition: all var(--transition-medium);
+}
+
+.constellation-label.active {
+  fill: #fff;
+  opacity: 1;
+  font-size: 12px;
+  text-shadow: var(--glow-text);
+}
+
+/* Right Detail Card switching */
+.sky-map-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.constellation-info-card {
+  display: none;
+  padding: 2.5rem;
+  transition: all var(--transition-medium);
+}
+
+.constellation-info-card.active {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.constellation-info-card h3 {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.constellation-stars-count {
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.celestial-card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.celestial-stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.celestial-stat span {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* --- MOON PHASE CALCULATOR --- */
+.moon-phase-panel {
+  max-width: 750px;
+  margin: 3rem auto 0;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.moon-phase-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+.moon-sphere-container {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #e2e2e2 0%, #a1a1a1 70%, #5c5c5c 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.15),
+              inset 0 0 20px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Slid shadow overlay */
+.moon-shading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 3, 20, 0.92);
+  border-radius: 50%;
+  transition: transform 0.1s linear;
+}
+
+#moon-phase-name {
+  font-family: var(--font-title);
+  color: #fff;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Slider Bar styling */
+.moon-slider-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.moon-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+
+.moon-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--accent);
+  transition: all var(--transition-fast);
+}
+
+.moon-slider::-webkit-slider-thumb:hover {
+  background: #fff;
+  box-shadow: 0 0 15px #fff;
+  transform: scale(1.1);
+}
+
+.moon-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-title);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* --- PLANET VISIBILITY TILES --- */
+.visibility-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.visibility-card {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: all var(--transition-medium);
+}
+
+.visibility-card h4 {
+  font-family: var(--font-title);
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.visibility-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-poor {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.badge-good {
+  background: rgba(234, 179, 8, 0.1);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  color: #eab308;
+}
+
+.badge-excellent {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.visibility-details {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* --- METEOR SHOWERS TABLE --- */
+table th, table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+table th {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* --- RESPONSIVENESS --- */
+@media (max-width: 1024px) {
+  .sky-map-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .visibility-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .sky-nav-bar {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .sky-nav-divider {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .visibility-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .moon-phase-panel {
+    padding: 2rem;
+  }
+  .sky-nav-bar {
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .visibility-grid {
+    grid-template-columns: 1fr;
+  }
+  .sky-hero {
+    padding: 6rem 1.5rem 4rem;
+  }
+  .moon-sphere-container {
+    width: 120px;
+    height: 120px;
+  }
+  .sky-nav-bar {
+    grid-template-columns: 1fr;
+  }
+  .sky-nav-card {
+    padding: 0.75rem 1rem;
+  }
+}

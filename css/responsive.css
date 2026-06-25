@@ -1,0 +1,332 @@
+/* Responsive layout structures for Stackly */
+
+/* 1440px + Desktop Ultra */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1300px;
+  }
+}
+
+/* 1024px to 1439px: Standard Laptop/Desktop */
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 2rem;
+  }
+  
+  section {
+    padding: 3.5rem 1.5rem;
+  }
+  
+  .footer {
+    padding: 3.5rem 2rem 2rem;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  
+  .footer-col:nth-child(4) {
+    grid-column: span 2;
+  }
+
+  /* Homepage Grid wrapping */
+  .celestial-grid, .observatories-grid, .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .hero-stats-panel {
+    grid-template-columns: repeat(2, 1fr);
+    margin: -45px 2rem 0;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .glass-card {
+    padding: 1.75rem !important;
+  }
+
+  .hero-title {
+    font-size: 2.8rem !important;
+  }
+
+  /* Menu hamburger setup activation */
+  .hamburger {
+    display: block;
+  }
+  
+  /* Hamburger visual state when active */
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  
+  /* Nav menu sliding panel drawer */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background: rgba(5, 3, 20, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+    transition: right var(--transition-medium);
+    padding: 2rem;
+    z-index: 1000;
+  }
+  
+  .nav-menu.active {
+    right: 0;
+  }
+  
+  .header-actions {
+    margin-right: 3rem;
+  }
+
+  .header-actions .nav-login-btn {
+    display: none;
+  }
+  
+  .nav-menu .nav-login-item {
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+}
+
+/* 768px to 1023px: Tablet Devices */
+@media (max-width: 768px) {
+  
+  .section-title {
+    font-size: 2.25rem;
+  }
+  
+  /* Grid conversions to linear stack */
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  /* Homepage Grids responsive wrapping */
+  .celestial-grid, .observatories-grid, .events-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .hero-stats-panel {
+    margin: -30px 1.5rem 0;
+  }
+
+  /* Galaxy Timeline Mobile Collapse */
+  .timeline-container {
+    padding: 2rem 0;
+  }
+
+  .timeline-line {
+    left: 20px;
+    transform: none;
+  }
+
+  .timeline-node {
+    width: 100%;
+    flex-direction: row !important;
+    margin-bottom: 2.5rem;
+  }
+
+  .timeline-dot {
+    left: 20px;
+    transform: translateX(-50%);
+  }
+
+  .timeline-content-wrapper {
+    width: 100%;
+    padding-left: 45px;
+    text-align: left !important;
+  }
+
+  .timeline-node:nth-child(even) .timeline-content-wrapper {
+    text-align: left !important;
+  }
+
+  .glass-card {
+    padding: 1.5rem !important;
+  }
+
+}
+
+/* 425px and below: Large Mobile devices */
+@media (max-width: 425px) {
+  .header {
+    height: 70px;
+    padding: 0 1rem;
+  }
+  
+  .header-actions {
+    margin-right: 0;
+  }
+  
+  .nav-menu {
+    width: 100%;
+  }
+  
+  section {
+    padding: 2.5rem 1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.4rem;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+  
+  .footer {
+    padding: 2.5rem 1rem 2rem;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .footer-col:nth-child(4) {
+    grid-column: span 1;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .footer-bottom-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* Home Stats Panel stacking */
+  .hero-stats-panel {
+    grid-template-columns: 1fr;
+    margin: -20px 1rem 0;
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .stats-card-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .newsletter-form-home {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .newsletter-form-home input, .newsletter-form-home button {
+    width: 100%;
+  }
+
+  .glass-card {
+    padding: 1rem !important;
+  }
+
+  /* Small mobile card width adjustment for scrolling ticker */
+  .planets-slider-track .planet-card {
+    width: 280px;
+  }
+}
+
+/* 375px and below: Small-medium mobile screens */
+@media (max-width: 375px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .logo {
+    font-size: 1.3rem;
+  }
+  
+  .hero-title {
+    font-size: 1.85rem !important;
+  }
+}
+
+/* 360px and 320px: Ultra-small mobile screens */
+@media (max-width: 360px) {
+  .section-title {
+    font-size: 1.65rem;
+  }
+  
+  body {
+    font-size: 14px;
+  }
+  
+  .hero-title {
+    font-size: 1.7rem !important;
+  }
+}
+
+/* General responsive rules for all page hero containers across viewports */
+@media (max-width: 768px) {
+  .hero, .about-hero, .obs-hero, .sky-hero, .contact-hero {
+    padding: 0 2rem;
+  }
+  .hero-subtitle {
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-size: 2.6rem !important;
+    margin-bottom: 1.5rem;
+  }
+  .hero-desc {
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero, .about-hero, .obs-hero, .sky-hero, .contact-hero {
+    padding: 0 1.5rem;
+  }
+  .hero-subtitle {
+    margin-bottom: 1.25rem;
+  }
+  .hero-title {
+    font-size: 2.1rem !important;
+    margin-bottom: 1.25rem;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  .hero-btns {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+  .hero-btns .btn {
+    width: 100%;
+  }
+}

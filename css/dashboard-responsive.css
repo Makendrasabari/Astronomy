@@ -1,0 +1,304 @@
+/* ==========================================================================
+   PREMIUM RESPONSIVE DASHBOARD STYLE SHEET (Antigravity Responsive Audit)
+   ========================================================================== */
+
+/* 1. Global Sidebar Structure Scroll Fix (For all screen heights) */
+.db-sidebar {
+  height: 100vh !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.db-sidebar-menu {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.db-sidebar-menu::-webkit-scrollbar {
+  width: 4px;
+}
+
+.db-sidebar-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.db-sidebar-menu::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+/* 2. Breakpoints */
+
+/* Standard Laptop/Desktop (<= 1024px) */
+@media (max-width: 1024px) {
+  .db-sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .db-sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .db-main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  /* Fix AOS visibility issues on mobile/tablet by forcing visibility and resetting transitions/transforms */
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Prevent dropdowns from shifting off-screen in responsive viewports */
+  .db-notif-dropdown {
+    width: calc(100vw - 32px) !important;
+    max-width: 320px !important;
+    right: 16px !important;
+    left: auto !important;
+    top: 75px !important;
+  }
+
+  .db-profile-dropdown {
+    width: calc(100vw - 32px) !important;
+    max-width: 240px !important;
+    right: 16px !important;
+    left: auto !important;
+    top: 75px !important;
+  }
+  
+  .db-main-content::before {
+    height: 1rem;
+  }
+  
+  .db-top-nav {
+    margin: 0 1.5rem 0.5rem;
+    top: 1rem;
+  }
+  
+  .db-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Grid splits conversions */
+  .db-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .db-grid-3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  
+  .db-grid-2, .db-grid-2-1 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Specific grid pages overrides */
+  .obs-domes-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fav-objects-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sky-highlights-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Tablet Devices (<= 768px) */
+@media (max-width: 768px) {
+  .db-main-content::before {
+    height: 0.75rem;
+  }
+  
+  .db-top-nav {
+    padding: 0 1.5rem;
+    margin: 0 1rem 0.25rem;
+    top: 0.75rem;
+  }
+
+  .db-search-bar {
+    display: none;
+  }
+
+  .db-content-body {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .db-grid-4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Form layouts stacking */
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Photo grids */
+  .photo-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Stargazer weather index widgets */
+  .vis-index-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .vis-index-factors {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--db-card-border);
+    padding-top: 1rem;
+  }
+}
+
+/* Medium-Small Mobile Screens (<= 576px) */
+@media (max-width: 576px) {
+  .db-content-body {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .photo-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .obs-table {
+    min-width: 550px; /* Keep minimum width to force scrolling instead of crushing columns */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Stack grid layouts to full-width linear layout */
+  .stats-tracker-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Stack starred observatories item lists */
+  .starred-obs-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 1rem;
+  }
+  
+  .starred-obs-item .btn-slew {
+    width: 100%;
+  }
+  
+  /* Stack event reminders */
+  .reminder-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.75rem;
+  }
+  
+  .reminder-item .countdown-badge {
+    align-self: flex-start;
+  }
+  
+  /* Restrict chart canvas containers to prevent horizontal expansion scrollbars */
+  .db-content-body canvas {
+    max-width: 100% !important;
+  }
+  
+  .db-card {
+    padding: 1.25rem !important;
+  }
+
+  /* Weather stats widgets */
+  .weather-matrix {
+    gap: 1.25rem;
+  }
+}
+
+/* Ultra-Small Mobile Screens (<= 425px) */
+@media (max-width: 425px) {
+  .db-breadcrumbs {
+    display: none;
+  }
+
+  .db-footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    text-align: center;
+  }
+
+  .db-top-nav {
+    padding: 0 1rem;
+  }
+
+  .db-user-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+
+  .db-sidebar-logo {
+    padding: 0 1.5rem;
+  }
+
+  .db-sidebar-footer {
+    padding: 1rem 1.25rem;
+  }
+}
+
+/* Micro-screens (<= 320px) */
+@media (max-width: 320px) {
+  .db-top-nav {
+    height: 70px;
+  }
+
+  .db-card {
+    padding: 1rem !important;
+  }
+
+  .vis-index-number {
+    font-size: 2.75rem;
+  }
+
+  .tracker-val {
+    font-size: 1.75rem;
+  }
+}
+
+/* 3. Desktop Docked Sidebar (For screen widths > 1024px) */
+@media (min-width: 1025px) {
+  .db-sidebar {
+    width: var(--db-sidebar-width) !important;
+    max-width: var(--db-sidebar-width) !important;
+    transform: translateX(0) !important;
+  }
+
+  .db-sidebar-close {
+    display: none !important;
+  }
+
+  .db-main-content {
+    margin-left: var(--db-sidebar-width) !important;
+    width: calc(100% - var(--db-sidebar-width)) !important;
+  }
+
+  .db-menu-toggle {
+    display: none !important;
+  }
+}
+
